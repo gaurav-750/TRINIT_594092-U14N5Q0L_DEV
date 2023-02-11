@@ -1,0 +1,22 @@
+.nav-home{
+    height: 100px;
+}
+.c-img{
+    /* width: 100%; */
+    height: calc(100vh - 100px);
+    width: auto;
+    object-fit: cover;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.font-64{
+    font-size: 64px;
+}
+
+.font-shadow{
+    text-shadow: 8px 8px 10px black;
+}
+
+.color-g{
+    color: #8DC73F;
+}

@@ -1,0 +1,24 @@
+.current-s{
+    background-color: #f3f2f3;
+}
+
+.cards-cs{
+    width: 70vw;
+}
+
+.card-cs{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.num{
+    font-size: 100px;
+    color: #8DC73F;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+.font-48-cs{
+    font-size: 48px;
+    color: #8DC73F;
+}
