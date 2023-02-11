@@ -7,11 +7,15 @@
     
 }
 
+.f-wrap{
+    flex-wrap: wrap;
+}
+
 .tl{
     text-align: left;
 }
 .fields{
-    width: 70vw;
+    /* width: 70vw; */
     flex-wrap: wrap;
 }
 
@@ -20,6 +24,7 @@
     width: calc(50% - 16px);
     display: flex;
     flex-direction: row;
+    flex:1;
 }
 
 .img-pop{
@@ -44,4 +49,10 @@
 
 .color-4{
     color: #DEBFAE;
+}
+
+@media(max-width:800px){
+    .field{
+        width: calc(100% - 50px);
+    }
 }

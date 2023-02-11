@@ -5,14 +5,15 @@ import liveli from "../../img/liveli.webp";
 import women from "../../img/women.webp";
 function FieldsofChange(props) {
   return (
-    <div className="foc mt-5 mb-3 text-center d-flex flex-column justify-content-center align-items-center ">
+    <div className="d-flex flex-column justify-content-center align-items-center">
+        <div className="foc mt-5 mb-3 text-center d-flex flex-column justify-content-center align-items-center col-xl-8 col-lg-11 col-sm-11">
       <div className="mt-5 mb-5">
         <h1 className="font-head font-48">
           <b>Fields of Change</b>
         </h1>
       </div>
 
-      <div className="fields d-flex flex-row ">
+      <div className="fields d-flex flex-row f-wrap">
         <div className="field mt-4 mb-4">
           <img className="d-block img-pop" src={edu} alt="First slide" />
           <div className="d-flex flex-column ml-2 field-r">
@@ -51,6 +52,8 @@ function FieldsofChange(props) {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 
