@@ -2,12 +2,11 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.filters import SearchFilter, OrderingFilter
-# from rest_framework.pagination import PageNumberPagination
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Ngo, Philanthropist, PhilanthropistPreference, Transaction, Plan, Type, Work
-from .serializers import AddPhilanthropistPreferenceSerializer, NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer, PhilanthropistPreferenceSerializer
+from .models import Ngo, Philanthropist, PhilanthropistPreference, Transaction, Plan, Type, Work, Blog
+from .serializers import AddPhilanthropistPreferenceSerializer, BlogSerializer, NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer, PhilanthropistPreferenceSerializer
 from .permissions import IsOwnerOrReadOnly
 from .pagination import CustomPagination
 
@@ -108,3 +107,8 @@ class PhilantrophistPreferenceViewset(ListModelMixin,
         return {
             'user_id': self.request.user.id
         }
+
+
+class BlogViewset(ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
