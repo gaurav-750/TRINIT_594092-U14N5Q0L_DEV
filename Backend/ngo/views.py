@@ -12,7 +12,7 @@ from .permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 class NgoViewset(ModelViewSet):
-    permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
+    permission_classes = [IsOwnerOrReadOnly]
     http_method_names = ['get', 'post', 'patch', 'delete']
 
     filter_backends = [DjangoFilterBackend]
@@ -58,6 +58,7 @@ class PhilanthropistViewset(ModelViewSet):
     filterset_fields = ['user', 'id']
 
     queryset = Philanthropist.objects.all()
+    serializer_class = PhilanthropistSerializer
 
     def get_serializer_class(self):
         if self.request.method == 'POST':

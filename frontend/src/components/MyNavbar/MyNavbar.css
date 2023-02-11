@@ -1,0 +1,22 @@
+.nav-home{
+    height: 80px;
+}
+
+.logo_img_css{
+    height: 80px;
+    pointer-events: none;
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.loginBtnColorNavbar{
+    background: linear-gradient(to right, rgb(59 130 246) 50%, rgb(37 99 235) 100%) right;
+}
+
+.signinBtnColorNavbar{
+    background: linear-gradient(to right, rgb(34 197 94) 50%, rgb(22 163 74) 100%) right;
+}
