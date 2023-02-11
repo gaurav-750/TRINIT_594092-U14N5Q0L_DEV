@@ -67,3 +67,12 @@ class PhilanthropistSerializer(serializers.ModelSerializer):
         model = Philanthropist
         # fields = ['user']
         fields = ['id', 'user']
+
+
+class CreatePhilanthropistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Philanthropist
+        fields = ['id']
+
+    def save(self, **kwargs):
+        Philanthropist.objects.create(user_id=self.context['user_id'])
