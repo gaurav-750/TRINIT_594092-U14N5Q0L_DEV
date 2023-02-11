@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import MyNavbar from '../../components/MyNavbar/MyNavbar';
 
 const SignUp = () => {
@@ -19,6 +20,8 @@ const SignUp = () => {
         });
       };
 
+      const navigate = useNavigate();
+
       const submitSignUp = async (e) => {
         e.preventDefault();
         const data = await axios.post('http://localhost:8000/auth/users/', formValue,)
@@ -26,13 +29,14 @@ const SignUp = () => {
         let data2 = JSON.stringify(data);
         if (data.status == 200) {
             localStorage.setItem("token", data.access) 
-            // localStorage.setItem("token", data.access_key)
-
-            // type of user
-
+            if(formValue.is_philantrophist == true){
+                navigate("/user_new");
+            }else{
+                navigate("/ngo/1");
+            }
+            // localStorage.setItem("token", data.access_key);
 
             // redirect
-
         }
 
     }

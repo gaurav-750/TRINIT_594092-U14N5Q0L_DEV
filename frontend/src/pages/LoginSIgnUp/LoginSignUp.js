@@ -1,10 +1,13 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MyNavbar from '../../components/MyNavbar/MyNavbar'
 
 const LoginSignUp = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
+    const navigate = useNavigate();
 
     const uchange = (e) => {
         setUsername(e.target.value);
@@ -60,11 +63,8 @@ const LoginSignUp = () => {
             localStorage.setItem("token", data.access) 
             // localStorage.setItem("token", data.access_key)
 
-            // type of user
-
-
             // redirect
-
+            navigate("/ngo/1");
         }
 
     }
