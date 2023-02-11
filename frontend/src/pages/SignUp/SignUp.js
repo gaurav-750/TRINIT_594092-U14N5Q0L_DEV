@@ -84,7 +84,7 @@ const SignUp = () => {
 
                         <select value={dpdown} onChange={(e) => { setDpdown(e.target.value) }} className="form-select" aria-label="Default select example">
                             <option selected>Type Of User</option>
-                            <option value={"Philanthropist "}>Philanthropist</option>
+                            <option value={"Philanthropist"}>Philanthropist</option>
                             <option value={"Ngo"}>NGO</option>
                         </select>
 
