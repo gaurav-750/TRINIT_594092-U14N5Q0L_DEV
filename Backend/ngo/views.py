@@ -1,12 +1,12 @@
-from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Ngo, Philanthropist, Transaction, Plan, Type, Work
-from .serializers import NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer
+from .models import Ngo, Philanthropist, PhilanthropistPreference, Transaction, Plan, Type, Work
+from .serializers import NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer, PhilanthropistPreferenceSerializer
 from .permissions import IsOwnerOrReadOnly
 
 
@@ -14,6 +14,9 @@ from .permissions import IsOwnerOrReadOnly
 class NgoViewset(ModelViewSet):
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
     http_method_names = ['get', 'post', 'patch', 'delete']
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['type']
 
     queryset = Ngo.objects.all()
 
@@ -69,5 +72,19 @@ class PhilanthropistViewset(ModelViewSet):
 
 
 class TypeViewset(ModelViewSet):
+
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['id']
+    search_fields = ['title']
+
     queryset = Type.objects.all()
     serializer_class = TypeSerializer
+
+
+class PhilantrophistPreferenceViewset(ListModelMixin,
+                                      CreateModelMixin,
+                                      RetrieveModelMixin,
+                                      GenericViewSet
+                                      ):
+    queryset = PhilanthropistPreference.objects.all()
+    serializer_class = PhilanthropistPreferenceSerializer

@@ -14,6 +14,9 @@ class Philanthropist(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.user.username
+
 
 class PhilanthropistPreference(models.Model):
     # phil_id
