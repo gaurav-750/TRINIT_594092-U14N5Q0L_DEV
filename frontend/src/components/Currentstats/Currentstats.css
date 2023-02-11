@@ -1,15 +1,15 @@
 .current-s{
     background-color: #f3f2f3;
 }
-
-.cards-cs{
-    width: 70vw;
+.f-wrap{
+    flex-wrap: wrap;
 }
 
 .card-cs{
     display: flex;
     flex-direction: column;
     width: fit-content;
+    flex:1;
 }
 
 .num{
