@@ -1,9 +1,6 @@
-.nav-home{
-    height: 100px;
-}
 .c-img{
     /* width: 100%; */
-    height: calc(100vh - 100px);
+    height: calc(100vh - 80px);
     width: auto;
     object-fit: cover;
     background: rgba(0, 0, 0, 0.5);
