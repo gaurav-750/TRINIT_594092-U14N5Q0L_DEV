@@ -8,7 +8,7 @@ function Footerf(props) {
     <div className="footerf pt-5 pb-5 d-flex flex-column justify-content-center align-items-center">
         <div className=" col-xl-8 col-sm-11 ">
             <div className="pb-5">
-                <h1 className="font-48 mb-4">Connect with Us</h1>
+                <h1 className="font-48 mb-4 t-center">Connect with Us</h1>
                 <div className="d-flex flex-row justify-content-center">
                     <div className="logo-f-img-d m-2">
                     <img
