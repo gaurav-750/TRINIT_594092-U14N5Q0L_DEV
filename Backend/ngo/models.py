@@ -18,9 +18,10 @@ class Philanthropist(models.Model):
 class PhilanthropistPreference(models.Model):
     # phil_id
     philanthropist = models.ForeignKey(
-        Philanthropist, on_delete=models.CASCADE)
+        Philanthropist, on_delete=models.CASCADE, related_name='preferences')
     # type_id
-    type = models.ForeignKey(Type, on_delete=models.PROTECT)
+    type = models.ForeignKey(
+        Type, on_delete=models.PROTECT)
 
 
 class Transaction(models.Model):

@@ -5,8 +5,8 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Ngo, Philanthropist, Transaction, Plan, Work
-from .serializers import NgoSerializer, CreateNgoSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer
+from .models import Ngo, Philanthropist, Transaction, Plan, Type, Work
+from .serializers import NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer
 from .permissions import IsOwnerOrReadOnly
 
 
@@ -57,4 +57,18 @@ class PhilanthropistViewset(ModelViewSet):
     queryset = Philanthropist.objects.all()
     serializer_class = PhilanthropistSerializer
 
-# class TypesViewSet(ModelViewSet)
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CreatePhilanthropistSerializer
+        else:
+            return PhilanthropistSerializer
+
+    def get_serializer_context(self):
+        return {
+            'user_id': self.request.user.id
+        }
+
+
+class TypeViewset(ModelViewSet):
+    queryset = Type.objects.all()
+    serializer_class = TypeSerializer

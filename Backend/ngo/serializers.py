@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from .models import Ngo, Plan, Work, Philanthropist
+from .models import Ngo, PhilanthropistPreference, Plan, Type, Work, Philanthropist
 
 
 class NgoSerializer(serializers.ModelSerializer):
@@ -60,13 +60,20 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'email']
 
 
+class TypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Type
+        fields = ['id', 'title']
+
+
 class PhilanthropistSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    # preferences = TypeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Philanthropist
-        # fields = ['user']
-        fields = ['id', 'user']
+        fields = ['id', 'user', 'preferences']
 
 
 class CreatePhilanthropistSerializer(serializers.ModelSerializer):
