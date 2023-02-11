@@ -32,8 +32,8 @@ const MyNavbar = () => {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="/">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
-                  <NavDropdown
+                  {/* <Nav.Link href="#action2">Link</Nav.Link> */}
+                  {/* <NavDropdown
                     title="Dropdown"
                     id={"offcanvasNavbarDropdown-expand-sm"}
                   >
@@ -45,7 +45,7 @@ const MyNavbar = () => {
                     <NavDropdown.Item href="#action5">
                       Something else here
                     </NavDropdown.Item>
-                  </NavDropdown>
+                  </NavDropdown> */}
                 </Nav>
                 <Form className="d-flex">
                   {/* <Form.Control
@@ -54,8 +54,8 @@ const MyNavbar = () => {
                     className="me-2"
                     aria-label="Search"
                   /> */}
-                  <Button variant="outline-none mx-1 loginBtnColorNavbar text-white">Login</Button>
-                  <Button variant="outline-none mx-1 signinBtnColorNavbar text-white">Sign Up</Button>
+                  <Button variant="outline-none mx-1 loginBtnColorNavbar text-white" href="/login">Login</Button>
+                  <Button variant="outline-none mx-1 signinBtnColorNavbar text-white" href="/signUp">Sign Up</Button>
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

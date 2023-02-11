@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_filters',
     'djoser',
     'environ',
+    'corsheaders',
 
     # local
     'ngo',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,6 +86,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOWED_ORIGINS = [
+    # "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://localhost:8000",
+]
+
+
+# CORS_ORIGIN_WHITELIST = (
+#        'http://localhost:3000',
+#     #    'localhost',
+#     #    '*',
+# )
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
