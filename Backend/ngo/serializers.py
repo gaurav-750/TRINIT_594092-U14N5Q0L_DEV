@@ -3,12 +3,6 @@ from rest_framework import serializers
 from .models import Ngo, Plan, Work
 
 
-class PlanSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Plan
-        fields = ['id', 'title', 'description', 'accomplish_by']
-
-
 class NgoSerializer(serializers.ModelSerializer):
     type = serializers.StringRelatedField()
 
@@ -31,3 +25,11 @@ class WorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Work
         fields = ['id', 'title', 'description', 'ngo', 'year']
+
+
+class PlanSerializer(serializers.ModelSerializer):
+    ngo = SimpleNgoSerializer()
+
+    class Meta:
+        model = Plan
+        fields = ['id', 'title', 'description', 'ngo', 'accomplish_by']

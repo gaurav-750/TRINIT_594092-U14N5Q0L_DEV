@@ -3,7 +3,7 @@ from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Ngo, Philanthropist, Transaction, Plan, Work
-from .serializers import NgoSerializer, WorkSerializer
+from .serializers import NgoSerializer, WorkSerializer, PlanSerializer
 
 
 # Create your views here.
@@ -20,3 +20,12 @@ class WorkViewset(ListModelMixin, RetrieveModelMixin, GenericViewSet):
 
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
+
+
+class PlanViewset(ListModelMixin, RetrieveModelMixin, GenericViewSet):
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['ngo']
+
+    queryset = Plan.objects.all()
+    serializer_class = PlanSerializer
