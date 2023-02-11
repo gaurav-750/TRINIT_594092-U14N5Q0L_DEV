@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'ngo',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'pass123'
+        'PASSWORD': 'admin'
     }
 }
 

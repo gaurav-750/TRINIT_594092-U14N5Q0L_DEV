@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Ngo, Plan, Work
+from .models import Ngo, Plan, Work, Philanthropist
 
 
 class NgoSerializer(serializers.ModelSerializer):
@@ -33,3 +33,9 @@ class PlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
         fields = ['id', 'title', 'description', 'ngo', 'accomplish_by']
+
+class PhilanthropistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Philanthropist
+        # fields = ['user']
+        fields = "__all__"
