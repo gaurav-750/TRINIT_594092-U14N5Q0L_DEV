@@ -1,0 +1,11 @@
+.font-48{
+    font-size: 48px;
+    /* text-align: center; */
+    text-align: left;
+}
+
+.f-w{
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

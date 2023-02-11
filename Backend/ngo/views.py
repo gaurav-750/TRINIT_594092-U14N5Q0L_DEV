@@ -1,19 +1,27 @@
-from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.filters import SearchFilter, OrderingFilter
+# from rest_framework.pagination import PageNumberPagination
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Ngo, Philanthropist, Transaction, Plan, Type, Work
-from .serializers import NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer
+from .models import Ngo, Philanthropist, PhilanthropistPreference, Transaction, Plan, Type, Work
+from .serializers import AddPhilanthropistPreferenceSerializer, NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer, PhilanthropistPreferenceSerializer
 from .permissions import IsOwnerOrReadOnly
-
+from .pagination import CustomPagination
 
 # Create your views here.
+
+
 class NgoViewset(ModelViewSet):
     permission_classes = [IsOwnerOrReadOnly]
     http_method_names = ['get', 'post', 'patch', 'delete']
+
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ['name', 'city']
+
+    pagination_class = CustomPagination
 
     queryset = Ngo.objects.all()
 
@@ -70,5 +78,33 @@ class PhilanthropistViewset(ModelViewSet):
 
 
 class TypeViewset(ModelViewSet):
+
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['id']
+    search_fields = ['title']
+
     queryset = Type.objects.all()
     serializer_class = TypeSerializer
+
+
+class PhilantrophistPreferenceViewset(ListModelMixin,
+                                      CreateModelMixin,
+                                      RetrieveModelMixin,
+                                      GenericViewSet
+                                      ):
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['philanthropist_id']
+
+    queryset = PhilanthropistPreference.objects.all()
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return AddPhilanthropistPreferenceSerializer
+        else:
+            return PhilanthropistPreferenceSerializer
+
+    def get_serializer_context(self):
+        return {
+            'user_id': self.request.user.id
+        }
