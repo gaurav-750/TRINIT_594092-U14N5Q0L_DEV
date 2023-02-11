@@ -1,37 +1,26 @@
+import logo from './logo.svg';
 import './App.css';
-import { Route, BrowserRouter, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Navbar from "./navbar"
-import Footer from "./components/Footer/footer"
-import Login from './pages/login'
-import Demo from "./pages/demo";
-import MyModal from './pages/MyModal';
-import Preloader from './components/preloader/Preloader';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import Profile from './pages/Profile';
-
-
+import Home from './pages/Home/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
-    <>
-      {/* <Login /> */}
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-
-        <Route path="/demo" element={<Demo />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/apply" element={<MyModal />} />
-        <Route path="/profile" element={<Profile />} />
-        {/* <Route path="/Preloader" element={<Preloader />} /> */}
-
-        {/* </Route> */}
-      </Routes>
-      {/* <Footer/> */}
-    </>
+    <div className="App">
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header> */}
+      <Home></Home>
+    </div>
   );
 }
 

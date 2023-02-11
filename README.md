@@ -1,4 +1,4 @@
-# <u>Webster - Hackathon</u>
+# <u>TRI-NIT HACKATHON</u>
 
 ## Contributors 😎 <p align="center">
 

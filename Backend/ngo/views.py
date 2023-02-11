@@ -1,3 +1,4 @@
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
@@ -6,11 +7,12 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Ngo, Philanthropist, Transaction, Plan, Work
 from .serializers import NgoSerializer, CreateNgoSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer
+from .permissions import IsOwnerOrReadOnly
 
 
 # Create your views here.
 class NgoViewset(ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsOwnerOrReadOnly]
     http_method_names = ['get', 'post', 'patch', 'delete']
 
     queryset = Ngo.objects.all()

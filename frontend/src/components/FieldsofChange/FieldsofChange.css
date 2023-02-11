@@ -1,0 +1,47 @@
+.font-48{
+    font-size: 48px;
+}
+
+.font-36{
+    font-size: 40px;
+    
+}
+
+.tl{
+    text-align: left;
+}
+.fields{
+    width: 70vw;
+    flex-wrap: wrap;
+}
+
+.field{
+    margin: 8px;
+    width: calc(50% - 16px);
+    display: flex;
+    flex-direction: row;
+}
+
+.img-pop{
+    height: 150px;
+}
+
+.field-r{
+    margin-left: 10px;
+}
+
+.color-1{
+    color: #F0c774;
+}
+
+.color-2{
+    color: #C0ADCC;
+}
+
+.color-3{
+    color: #B3D2D1;
+}
+
+.color-4{
+    color: #DEBFAE;
+}
