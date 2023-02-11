@@ -56,7 +56,6 @@ const NGO = () => {
     useEffect(() => {
       let pg_no = params.pg_no;
         setCurrPage(pg_no);
-
         // call pgNo data
     }, [])
     
