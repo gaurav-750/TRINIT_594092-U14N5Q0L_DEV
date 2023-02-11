@@ -112,6 +112,9 @@ class PhilantrophistPreferenceViewset(ListModelMixin,
 class BlogViewset(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ['title', 'author__first_name', 'author__last_name']
+
     queryset = Blog.objects.all()
     # serializer_class = BlogSerializer
 
