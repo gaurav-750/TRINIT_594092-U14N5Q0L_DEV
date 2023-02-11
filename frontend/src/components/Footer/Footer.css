@@ -1,0 +1,31 @@
+.footerf{
+    background-color: #6A6B6A;
+    margin: 0px;
+    text-align: center;
+    color: white;
+}
+
+
+.logo-f-img-d{
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    border-radius: 60px;
+    padding: 10px;
+}
+
+.font-48{
+    font-size: 36px;
+}
+
+.last-f{
+    flex-wrap: wrap;
+}
+
+.div-f-l{
+    width: 50%;
+    text-align: left;
+}
+.div-f-r{
+    width: 50%;
+}

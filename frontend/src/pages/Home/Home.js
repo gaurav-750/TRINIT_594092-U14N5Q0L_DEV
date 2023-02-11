@@ -14,6 +14,7 @@ import home_t_3 from "../../img/home_t_3.jpeg";
 import home_t_4 from "../../img/home_t_4.jpg";
 import FieldsofChange from "../../components/FieldsofChange/FieldsofChange";
 import Currentstats from "../../components/Currentstats/Currentstats";
+import Footerf from "../../components/Footer/Footer";
 function Home(props) {
   return (
     <div className="home">
@@ -112,6 +113,7 @@ function Home(props) {
     </Carousel>
     <FieldsofChange />
     <Currentstats />
+    <Footerf />
     </div>
   );
 }
