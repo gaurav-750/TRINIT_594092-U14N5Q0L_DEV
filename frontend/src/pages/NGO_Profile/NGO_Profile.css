@@ -1,0 +1,43 @@
+.font-48-ngo{
+    font-size: 48px;
+    text-align: center;
+}
+.font-32-ngo{
+    font-size: 32px;
+    text-align: left;
+}
+
+.img-l{
+    height: 100px;
+    width: 100px;
+}
+
+.marr-l-5{
+    margin-left: 50px;
+}
+
+.data-fields{
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.c1{
+    background-color: #F0c774;
+    border: 2px solid #F0c774;
+    
+}
+
+.c2{
+    background-color: #B3D2D1;
+    border: 2px solid #B3D2D1;
+}
+
+.c3{
+    background-color: #C0ADCC;
+    border: 2px solid #C0ADCC;
+}
+
+.c4{
+    background-color: #DEBFAE;
+    border: 2px solid #DEBFAE;
+}

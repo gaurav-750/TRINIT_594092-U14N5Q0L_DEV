@@ -17,7 +17,6 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/ngo/:pg_no" element={<NGO />} />
         <Route path="/ngo/profile/:pg_no" element={<NGO_Profile />} />
-        
         <Route path="/user_new" element={<User_First />} />
         <Route path="/user_set" element={<User_Settings />} />
 
