@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from .models import Ngo, PhilanthropistPreference, Plan, Type, Work, Philanthropist
+from .models import Blog, Ngo, PhilanthropistPreference, Plan, Type, Work, Philanthropist
 
 
 class NgoSerializer(serializers.ModelSerializer):
@@ -18,7 +18,7 @@ class CreateNgoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ngo
         fields = ['id', 'name', 'impact', 'end_goal', 'mission',
-                  'history', 'funding_needed', 'type']
+                  'history', 'funding_needed', 'type', 'city']
 
     def save(self, **kwargs):
         Ngo.objects.create(**self.validated_data,
@@ -103,3 +103,9 @@ class AddPhilanthropistPreferenceSerializer(serializers.ModelSerializer):
         PhilanthropistPreference.objects.create(
             philanthropist_id=phil.id, **self.validated_data
         )
+
+
+class BlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = ['id', 'author', 'title', 'description', 'image']

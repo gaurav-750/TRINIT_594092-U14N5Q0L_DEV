@@ -1,66 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import MyNavbar from '../../components/MyNavbar/MyNavbar'
 import { useParams } from 'react-router-dom';
+import axios, { all } from 'axios';
 import("./NGO.css");
 const ngo_ex_img = require('../../img/home_t_3.jpeg');
 
 const NGO = () => {
 
-    const [currPage, setCurrPage] = useState(1)
-
-    const types = [
-        {
-            "id": 1,
-            "title": "Charitable"
-        },
-        {
-            "id": 2,
-            "title": "Service"
-        },
-        {
-            "id": 3,
-            "title": "CBO"
-        },
-        {
-            "id": 4,
-            "title": "National Level"
-        }
-    ]
-
-    const ngo_dummy_eg = [
-        {
-            "id": 1,
-            "name": "Sarthak Ngo",
-            "impact": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "end_goal": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "mission": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            "history": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            "funding_needed": 100000.0,
-            "type": "Charitable",
-            "user": 1
-        },
-        {
-            "id": 3,
-            "name": "Sneha Ngo",
-            "impact": "sed do eiusmod tempor incididunt ut labore et dolore",
-            "end_goal": "sed do eiusmod tempor incididunt ut labore et dolore",
-            "mission": "sed do eiusmod tempor incididunt ut labore et dolore",
-            "history": "sed do eiusmod tempor incididunt ut labore et dolore",
-            "funding_needed": 200000.0,
-            "type": "Service",
-            "user": 2
-        }
-    ]
+    const [loading, setLoading] = useState(true);
+    const [searchTxt, setSearchTxt] = useState('');
+    const [searchType, setSearchType] = useState('');
+    const [types, setTypes] = useState([]);
+    const [ngo_dummy_eg, set_ngo_dummy_eg] = useState([]);
     
     const params = useParams();
+
     useEffect(() => {
-      let pg_no = params.pg_no;
-        setCurrPage(pg_no);
+        async function setmydata(){
 
-        // call pgNo data
+            setLoading(true);
+            const dpdownlist = await axios.get("http://localhost:8000/api/type/");
+            setTypes(dpdownlist.data);
+
+            const allsearchres = await axios.get(`http://localhost:8000/api/ngo/?page=${params.pg_no}`);
+            // const allsearchres = await axios.get("http://localhost:8000/api/ngo/");
+            console.log("allsearchres", allsearchres.data);
+            set_ngo_dummy_eg(allsearchres.data.results);
+            // call pgNo data
+            setLoading(false);
+        }
+        setmydata();
     }, [])
-    
 
+    const search = async (e) => {
+        e.preventDefault();
+        const all_search_res = await axios.get(`http://localhost:8000/api/ngo/?page=1&search=${searchTxt}`);
+        set_ngo_dummy_eg(all_search_res.data.results);
+    }
+
+    
+    const searchonType = async (e) => {
+        e.preventDefault();
+        console.log("searchType",searchType);
+        const all_search_res = await axios.get(`http://localhost:8000/api/ngo/?page=1&search=${searchType}`);
+        console.log("all_serach_res", all_search_res.data.results);
+        set_ngo_dummy_eg(all_search_res.data.results);
+    }
+
+    if(loading){
+        return <>Loading...</>
+    }
+    
     return (
         <div className="home">
             <MyNavbar />
@@ -70,9 +60,9 @@ const NGO = () => {
             <div className="row my-2 mx-3">
 
                 <div className="input-group mb-3">
-                    <input type="text" className="form-control" placeholder="Seach by NGO name, City"  aria-describedby="basic-addon2" />
+                    <input value={searchTxt} onChange={(e)=>{setSearchTxt(e.target.value)}} type="text" className="form-control" placeholder="Seach by NGO name, City"  aria-describedby="basic-addon2" />
                     <div className="input-group-append  mx-2">
-                        <button className="btn btn-primary btn-outline-secondary text-white" type="button">Search</button>
+                        <button className="btn btn-primary btn-outline-secondary text-white" type="button" onClick={(e)=>search()}>Search</button>
                     </div>
                 </div>
 
@@ -86,12 +76,12 @@ const NGO = () => {
                     <select className="custom-select" id="inputGroupSelect01">
                         {
                             types.map((type)=>{
-                                return (<option value={type.title}>{type.title}</option>)
+                                return (<option key={type.id} value={type.title} onChange={(e)=>{console.log(searchType);setSearchType(e.target.value)}} >{type.title}</option>)
                             })
                         }
                     </select>
                     <div className="input-group-append  mx-2">
-                        <button className="btn btn-primary btn-outline-secondary text-white" type="button">Search</button>
+                        <button className="btn btn-primary btn-outline-secondary text-white" type="button" onClick={searchonType}>Search</button>
                     </div>
 
                 </div>
@@ -104,7 +94,7 @@ const NGO = () => {
 
                 {ngo_dummy_eg.map((ngo) => {
                     return(
-                        <div className="card my-2" style={{width: "100%"}}>
+                        <div className="card my-2"  style={{width: "100%"}}>
                             <div className="row no-gutters">
                                 <div className="col-lg-4 col-md-4 col-sm-4 col-sx-4 ">
 
@@ -113,8 +103,11 @@ const NGO = () => {
                                 <div className="col-lg-8 col-md-8 col-sm-8 col-sx-8 ">
                                     <div className="card-body">
                                         <h5 className="card-title"> <b>Name: </b> {ngo.name} </h5>
-                                        <p className="card-text"> <b>Funding Needed: </b> {ngo.funding_needed}</p>
-                                        <p className="card-text"> <b>Type: </b> {ngo.type}</p>
+                                        <p className="card-text"> <b>Funding Needed: </b> {ngo.funding_needed}
+                                        <br />
+                                        <b>Type: </b> {ngo.type}
+                                        
+                                        </p>
                                         {/* <p className="card-text"> <b>Mission: </b> {ngo.mission}</p> */}
                                         {/* <p className="card-text"> <b>History: </b> {ngo.history}</p> */}
                                         <a href={`/ngo/profile/${ngo.id}`} className="btn btn-primary">View NGO Profile</a>
