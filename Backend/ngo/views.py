@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Ngo, Philanthropist, Transaction, Plan, Work
-from .serializers import NgoSerializer, CreateNgoSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer
+from .serializers import NgoSerializer, CreateNgoSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer
 
 
 # Create your views here.
@@ -46,3 +46,11 @@ class PlanViewset(ListModelMixin, RetrieveModelMixin, GenericViewSet):
 
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
+
+
+class PhilanthropistViewset(ModelViewSet):
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user', 'id']
+
+    queryset = Philanthropist.objects.all()
+    serializer_class = PhilanthropistSerializer
