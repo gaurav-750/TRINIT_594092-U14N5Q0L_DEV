@@ -15,7 +15,7 @@
 }
 
 .font-48{
-    font-size: 36px;
+    font-size: 36px!important;
 }
 
 .last-f{
@@ -28,4 +28,8 @@
 }
 .div-f-r{
     width: 50%;
+}
+
+.t-center{
+    text-align: center!important;
 }

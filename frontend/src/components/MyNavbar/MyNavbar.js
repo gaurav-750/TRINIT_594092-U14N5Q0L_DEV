@@ -54,8 +54,9 @@ const MyNavbar = () => {
                     className="me-2"
                     aria-label="Search"
                   /> */}
-                  <Button variant="outline-none mx-1 loginBtnColorNavbar text-white" href="/login">Login</Button>
-                  <Button variant="outline-none mx-1 signinBtnColorNavbar text-white" href="/signUp">Sign Up</Button>
+                  {localStorage.getItem('token') != null ? <Button variant="outline-none mx-1 btn btn-danger text-white" onClick={(e)=>{ e.preventDefault(); localStorage.removeItem("token"); window.location.reload();}}>Logout</Button> : <><Button variant="outline-none mx-1 loginBtnColorNavbar text-white" href="/login">Login</Button>
+                  <Button variant="outline-none mx-1 signinBtnColorNavbar text-white" href="/signUp">Sign Up</Button></>}
+                  
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

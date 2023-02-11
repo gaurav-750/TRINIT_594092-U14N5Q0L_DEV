@@ -10,11 +10,12 @@ class UserCreateSerializer(BaseUCS):
             'password',
             'email',
             'first_name',
-            'last_name'
+            'last_name', 
+            'is_phalanthropist'
         ]
 
 
 class UserSerializer(BaseUS):
     class Meta(BaseUS.Meta):
         fields = ['id', 'username', 'email',
-                  'first_name', 'last_name']
+                  'first_name', 'last_name', 'is_phalanthropist']

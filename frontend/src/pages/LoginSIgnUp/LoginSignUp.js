@@ -1,10 +1,13 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MyNavbar from '../../components/MyNavbar/MyNavbar'
 
 const LoginSignUp = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
+    const navigate = useNavigate();
 
     const uchange = (e) => {
         setUsername(e.target.value);
@@ -55,16 +58,20 @@ const LoginSignUp = () => {
         })
 
         // console.log("data", data);
-        let data2 = JSON.stringify(data);
+        // let data2 = JSON.stringify(data);
         if (data.status == 200) {
             localStorage.setItem("token", data.access) 
-            // localStorage.setItem("token", data.access_key)
+            // localStorage.setItem("token", data.access_key);
 
-            // type of user
+            const data = await axios.post('http://localhost:8000/auth/users/me/', { username, password, },)
 
+            // let data2 = JSON.stringify(data);
+            console.log(data);
+
+            
 
             // redirect
-
+            navigate("/ngo/1");
         }
 
     }
@@ -93,10 +100,6 @@ const LoginSignUp = () => {
 
                         <div className="row mb-4">
                             <div className="col-md-6 d-flex justify-content-center">
-                                <div className="form-check mb-3 mb-md-0">
-                                    <input className="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                                    <label className="form-check-label" for="loginCheck"> Remember me </label>
-                                </div>
                             </div>
 
                             <div className="col-md-6 d-flex justify-content-center">
