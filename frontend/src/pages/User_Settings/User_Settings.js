@@ -25,9 +25,10 @@ function User_Settings(props) {
     }
     Update(data);
   }
+
   useEffect (async() => {
-    const data = await axios.get('http://localhost:8000/auth/users/me/');
-    axios.get('http://localhost:8000/auth/users/me/', {
+    // const data = await axios.get('http://localhost:8000/auth/users/me/');
+     const data=axios.get('http://localhost:8000/auth/users/me/', {
       headers: {
         'Authorization': `JWT ${token}`
       }
@@ -36,6 +37,7 @@ function User_Settings(props) {
     updatefname(data.first_name);
     updatelname(data.last_name);
   }, []);
+  
   return (
     <div>
       <MyNavbar />
