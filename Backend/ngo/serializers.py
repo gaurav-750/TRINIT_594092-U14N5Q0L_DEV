@@ -18,7 +18,7 @@ class CreateNgoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ngo
         fields = ['id', 'name', 'impact', 'end_goal', 'mission',
-                  'history', 'funding_needed', 'type']
+                  'history', 'funding_needed', 'type', 'city']
 
     def save(self, **kwargs):
         Ngo.objects.create(**self.validated_data,
