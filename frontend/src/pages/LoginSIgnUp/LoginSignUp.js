@@ -57,18 +57,16 @@ const LoginSignUp = () => {
             }
         })
 
-        // console.log("data", data);
+        console.log("data", data);
         // let data2 = JSON.stringify(data);
         if (data.status == 200) {
             localStorage.setItem("token", data.access) 
             // localStorage.setItem("token", data.access_key);
 
-            const data = await axios.post('http://localhost:8000/auth/users/me/', { username, password, },)
+            // const data2 = await axios.post('http://localhost:8000/auth/users/me/', { username, password, },)
 
             // let data2 = JSON.stringify(data);
-            console.log(data);
-
-            
+            // console.log(data2);
 
             // redirect
             navigate("/ngo/1");
@@ -90,7 +88,7 @@ const LoginSignUp = () => {
 
                         <div className="form-outline mb-4">
                             <input value={username} onChange={(e) => uchange(e)} type="text" id="loginName" className="form-control" />
-                            <label className="form-label" for="loginName">Email</label>
+                            <label className="form-label" htmlFor="loginName">Email</label>
                         </div>
 
                         <div className="form-outline mb-4">
