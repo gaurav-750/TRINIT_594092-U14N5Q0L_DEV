@@ -12,6 +12,7 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 django-environ = "*"
 gunicorn = "*"
+pillow = "*"
 
 [dev-packages]
 autopep8 = "*"
