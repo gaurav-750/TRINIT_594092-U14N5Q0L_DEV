@@ -35,6 +35,9 @@ class Plan(models.Model):
 class Transaction(models.Model):
     philanthropist = models.ForeignKey(
         Philanthropist, on_delete=models.PROTECT)
+    # todo ngo:
+    ngo_foreign = models.ForeignKey(
+        'Ngo', on_delete=models.PROTECT, related_name="+")
     received = models.DecimalField(max_digits=8, decimal_places=2)
     spent = models.DecimalField(max_digits=8, decimal_places=2)
 
