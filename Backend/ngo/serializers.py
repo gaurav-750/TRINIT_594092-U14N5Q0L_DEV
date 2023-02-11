@@ -106,6 +106,19 @@ class AddPhilanthropistPreferenceSerializer(serializers.ModelSerializer):
 
 
 class BlogSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+
     class Meta:
         model = Blog
         fields = ['id', 'author', 'title', 'description', 'image']
+
+
+class CreateBlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = ['title', 'description', 'image']
+
+    def save(self, **kwargs):
+        Blog.objects.create(
+            author_id=self.context['user_id'], **self.validated_data
+        )
