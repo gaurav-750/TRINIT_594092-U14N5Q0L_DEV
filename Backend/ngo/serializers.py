@@ -11,7 +11,7 @@ class NgoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ngo
         fields = ['id', 'name', 'impact', 'end_goal', 'mission',
-                  'history', 'funding_needed', 'type', 'user']
+                  'history', 'funding_needed', 'type', 'user', 'city']
 
 
 class CreateNgoSerializer(serializers.ModelSerializer):
@@ -84,3 +84,22 @@ class CreatePhilanthropistSerializer(serializers.ModelSerializer):
     def save(self, **kwargs):
         Philanthropist.objects.create(user_id=self.context['user_id'])
 
+
+class PhilanthropistPreferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PhilanthropistPreference
+        fields = ['id', 'philanthropist', 'type']
+
+
+class AddPhilanthropistPreferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PhilanthropistPreference
+        fields = ['id', 'type']
+
+    def save(self, **kwargs):
+        user_id = self.context['user_id']
+        phil = Philanthropist.objects.get(user_id=user_id)
+
+        PhilanthropistPreference.objects.create(
+            philanthropist_id=phil.id, **self.validated_data
+        )
