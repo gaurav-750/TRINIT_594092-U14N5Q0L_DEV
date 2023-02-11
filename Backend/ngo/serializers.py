@@ -89,3 +89,17 @@ class PhilanthropistPreferenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhilanthropistPreference
         fields = ['id', 'philanthropist', 'type']
+
+
+class AddPhilanthropistPreferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PhilanthropistPreference
+        fields = ['id', 'type']
+
+    def save(self, **kwargs):
+        user_id = self.context['user_id']
+        phil = Philanthropist.objects.get(user_id=user_id)
+
+        PhilanthropistPreference.objects.create(
+            philanthropist_id=phil.id, **self.validated_data
+        )

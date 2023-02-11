@@ -6,8 +6,8 @@ from django.conf import settings
 class Type(models.Model):
     title = models.CharField(max_length=255)
 
-    def __str__(self) -> str:
-        return self.title
+    def __str__(self):
+        return str(self.id)
 
 
 class Philanthropist(models.Model):
