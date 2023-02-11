@@ -45,6 +45,9 @@ class Ngo(models.Model):
     # funding needs
     funding_needed = models.DecimalField(max_digits=8, decimal_places=2)
 
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
     def __str__(self) -> str:
         return self.name
 

@@ -10,11 +10,12 @@ class PlanSerializer(serializers.ModelSerializer):
 
 
 class NgoSerializer(serializers.ModelSerializer):
+    type = serializers.StringRelatedField()
 
     class Meta:
         model = Ngo
         fields = ['id', 'name', 'impact', 'end_goal', 'mission',
-                  'history', 'funding_needed', 'type']
+                  'history', 'funding_needed', 'type', 'user']
 
 
 class SimpleNgoSerializer(serializers.ModelSerializer):
