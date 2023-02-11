@@ -2,7 +2,7 @@ import React from "react";
 import Detective from "../../static/images/detective2.jpg";
 import { Link } from "react-router-dom";
 import logo from "./baker.png"
-import "./Preloader.css";
+import "../preloader/Preloader.css";
 
 function footer() {
   return (

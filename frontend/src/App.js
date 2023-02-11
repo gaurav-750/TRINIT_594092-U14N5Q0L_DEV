@@ -2,7 +2,7 @@ import './App.css';
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./navbar"
-import Footer from "./components/preloader/footer"
+import Footer from "./components/Footer/footer"
 import Login from './pages/login'
 import Demo from "./pages/demo";
 import MyModal from './pages/MyModal';

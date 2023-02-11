@@ -4,7 +4,7 @@ import Background from '../Home/background'
 import Hero from '../Home/hero'
 import Apli from "../Home/aplli";
 import Testi from "../Home/testimonial";
-import Footer from "../components/preloader/footer";
+import Footer from "../components/Footer/footer";
 
 import Req from "../Home/requirements";
 
@@ -25,10 +25,10 @@ const Home = () => {
     <div className="w-full h-[110vh]">
       <Hero />
       {/* <Req/> */}
-      <Apli/>
-      <Testi/>
+      <Apli />
+      <Testi />
       <Background />
-      <Footer/>
+      <Footer />
       {/* <Req/> */}
     </div>
   );
