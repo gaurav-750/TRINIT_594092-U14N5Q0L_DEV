@@ -63,16 +63,12 @@ const LoginSignUp = () => {
             localStorage.setItem("token", data.access) 
             // localStorage.setItem("token", data.access_key);
 
-            const data = await axios.post('http://localhost:8000/auth/jwt/create/', {
-                username, 
-                password,
-                },
-                {
-                headers: {
-                    // Authorization: 'Bearer ' + varToken
-                    // 'Access-Control-Allow-Credentials': true
-                }
-            })
+            const data = await axios.post('http://localhost:8000/auth/users/me/', { username, password, },)
+
+            // let data2 = JSON.stringify(data);
+            console.log(data);
+
+            
 
             // redirect
             navigate("/ngo/1");
