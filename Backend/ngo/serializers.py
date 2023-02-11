@@ -11,7 +11,7 @@ class NgoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ngo
         fields = ['id', 'name', 'impact', 'end_goal', 'mission',
-                  'history', 'funding_needed', 'type', 'user']
+                  'history', 'funding_needed', 'type', 'user', 'city']
 
 
 class CreateNgoSerializer(serializers.ModelSerializer):

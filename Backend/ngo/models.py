@@ -52,6 +52,8 @@ class Ngo(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    city = models.CharField(max_length=255, default='Pune')
+
     def __str__(self) -> str:
         return self.name
 

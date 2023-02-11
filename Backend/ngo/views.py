@@ -15,8 +15,9 @@ class NgoViewset(ModelViewSet):
     permission_classes = [IsOwnerOrReadOnly]
     http_method_names = ['get', 'post', 'patch', 'delete']
 
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['type']
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ['name', 'city']
+    # filterset_fields = ['type']
 
     queryset = Ngo.objects.all()
 
