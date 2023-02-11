@@ -78,3 +78,11 @@ class Work(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Blog(models.Model):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blogs'
+    )
+    title = models.CharField(max_length=255)
+    description = models.TextField()
