@@ -5,7 +5,7 @@
 .logo_img_css{
     height: 80px;
     pointer-events: none;
-    user-drag: none; 
+    /* user-drag: none;  */
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
