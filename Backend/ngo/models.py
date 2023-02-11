@@ -36,21 +36,17 @@ class Transaction(models.Model):
 class Ngo(models.Model):
     name = models.CharField(max_length=255)
     type = models.OneToOneField(Type, on_delete=models.PROTECT)
-    # previous_work = models.ForeignKey(
-    #     Work, on_delete=models.PROTECT, related_name='works')
 
     impact = models.TextField()
     end_goal = models.TextField()
     mission = models.TextField()
     history = models.TextField()
 
-    # transaction = models.ForeignKey(Transaction, on_delete=models.PROTECT)
-
-    # plan
-    # plan = models.ForeignKey(Plan, on_delete=models.PROTECT)
-
     # funding needs
     funding_needed = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class Plan(models.Model):

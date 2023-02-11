@@ -9,15 +9,24 @@ class PlanSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'accomplish_by']
 
 
-class WorkSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Work
-        fields = ['id', 'title', 'description', 'year']
-
-
 class NgoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ngo
         fields = ['id', 'name', 'impact', 'end_goal', 'mission',
                   'history', 'funding_needed', 'type']
+
+
+class SimpleNgoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Ngo
+        fields = ['id', 'name', 'type']
+
+
+class WorkSerializer(serializers.ModelSerializer):
+    ngo = SimpleNgoSerializer()
+
+    class Meta:
+        model = Work
+        fields = ['id', 'title', 'description', 'ngo', 'year']
