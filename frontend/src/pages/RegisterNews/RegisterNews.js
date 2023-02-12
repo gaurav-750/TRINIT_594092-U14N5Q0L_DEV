@@ -24,7 +24,6 @@ const RegisterNews = () => {
 
     const submitLogin = async (e) => {
         e.preventDefault();
-        console.log(`JWT ${localStorage.getItem('token')}`);
         // var requestOptions = {
         //     method: 'POST',
         //     headers: {
@@ -40,39 +39,24 @@ const RegisterNews = () => {
         // };
 
         // const data = await fetch("http://localhost:8000/auth/jwt/create/", requestOptions);
-        // const data = await axios({
-        //     method: 'post',
-        //     url: "http://localhost:8000/auth/jwt/create/",
-        //     body: {
-        //         username,
-        //         password,
-        //     },
-        //     withCredentials: true,
-        // });
+
         const data = await axios.post('http://localhost:8000/api/blog/', {
-            title: username, 
-            description: password,
-            image: password2,
+                title: username, 
+                description: password,
+                image: password2,
             },
             {
-            headers: {
-                // Authorization: 'Bearer ' + varToken
-                "Authorization": `JWT ${localStorage.getItem('token')}`
-                // 'Access-Control-Allow-Credentials': true
+                headers: {
+                    // Authorization: 'Bearer ' + varToken
+                    "Authorization": `JWT ${localStorage.getItem('token')}`
+                    // 'Access-Control-Allow-Credentials': true
+                }
             }
-        })
+        )
 
-        console.log("data", data);
-        // let data2 = JSON.stringify(data);
+        // console.log("data", data);
+        
         if (data.status == 200) {
-            localStorage.setItem("token", data.access) 
-            // localStorage.setItem("token", data.access_key);
-
-            // const data2 = await axios.post('http://localhost:8000/auth/users/me/', { username, password, },)
-
-            // let data2 = JSON.stringify(data);
-            // console.log(data2);
-
             // redirect
             navigate("/ngo/1");
         }

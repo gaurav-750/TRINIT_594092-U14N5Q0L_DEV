@@ -88,7 +88,7 @@ const LoginSignUp = () => {
 
                         <div className="form-outline mb-4">
                             <input value={username} onChange={(e) => uchange(e)} type="text" id="loginName" className="form-control" />
-                            <label className="form-label" htmlFor="loginName">Email</label>
+                            <label className="form-label" htmlFor="loginName">username</label>
                         </div>
 
                         <div className="form-outline mb-4">

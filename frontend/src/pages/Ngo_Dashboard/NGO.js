@@ -33,16 +33,17 @@ const NGO = () => {
     }, [])
 
     const search = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        console.log(searchTxt,"searchTxt");
         const all_search_res = await axios.get(`http://localhost:8000/api/ngo/?page=1&search=${searchTxt}`);
         set_ngo_dummy_eg(all_search_res.data.results);
     }
 
     
     const searchonType = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log("searchType",searchType);
-        const all_search_res = await axios.get(`http://localhost:8000/api/ngo/?page=1&search=${searchType}`);
+        const all_search_res = await axios.get(`http://localhost:8000/api/ngo/?type=${searchType}`);
         console.log("all_serach_res", all_search_res.data.results);
         set_ngo_dummy_eg(all_search_res.data.results);
     }
@@ -73,10 +74,10 @@ const NGO = () => {
                     <div className="input-group-prepend">
                         <label className="input-group-text" for="inputGroupSelect01">Seach By Type</label>
                     </div>
-                    <select className="custom-select" id="inputGroupSelect01">
+                    <select name={searchType} value={searchType} onChange={(e)=>{console.log("searchType innn", e.target.value);setSearchType(e.target.value)}}  className="custom-select" id="inputGroupSelect01">
                         {
                             types.map((type)=>{
-                                return (<option key={type.id} value={type.title} onChange={(e)=>{console.log(searchType);setSearchType(e.target.value)}} >{type.title}</option>)
+                                return (<option key={type.id} value={type.id} onChange={(e)=>{console.log("searchType innn", e.target.value);setSearchType(e.target.value)}} >{type.title}</option>)
                             })
                         }
                     </select>
