@@ -5,6 +5,12 @@ from rest_framework import serializers
 from .models import Blog, Ngo, PhilanthropistPreference, Plan, Type, Work, Philanthropist
 
 
+class TypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = ['id', 'title']
+
+
 class NgoSerializer(serializers.ModelSerializer):
     type = serializers.StringRelatedField()
 
@@ -58,13 +64,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ['id', 'first_name', 'last_name', 'email']
-
-
-class TypeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Type
-        fields = ['id', 'title']
 
 
 class PhilanthropistSerializer(serializers.ModelSerializer):
