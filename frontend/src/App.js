@@ -9,6 +9,7 @@ import User_Settings from './pages/User_Settings/User_Settings';import NGO_Profi
 import LoginSignUp from './pages/LoginSIgnUp/LoginSignUp';
 import SignUp from './pages/SignUp/SignUp';
 import RegisterNgo from './pages/RegisterNgo/RegisterNgo';
+import RegisterNews from './pages/RegisterNews/RegisterNews';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <Route path="/user_new" element={<User_First />} />
         <Route path="/user_set" element={<User_Settings />} />
 
-
+        <Route path="/post_news" element={<RegisterNews />} />
         
     </Routes>
   );
