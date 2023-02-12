@@ -6,7 +6,7 @@ import women from "../../img/women.webp";
 function FieldsofChange(props) {
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
-        <div className="foc mt-5 mb-3 text-center d-flex flex-column justify-content-center align-items-center col-xl-8 col-lg-11 col-sm-11">
+        <div className="foc mt-5 mb-5 text-center d-flex flex-column justify-content-center align-items-center col-xl-8 col-lg-11 col-sm-11">
       <div className="mt-5 mb-5">
         <h1 className="font-head font-48">
           <b>Fields of Change</b>

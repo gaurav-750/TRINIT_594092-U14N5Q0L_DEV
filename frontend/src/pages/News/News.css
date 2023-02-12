@@ -1,0 +1,33 @@
+.news{
+    min-width: 400px;
+    width: 43%;
+    max-width: 500px;
+    padding: 25px;
+}
+
+.img-news{
+    height: 300px;
+    object-fit: fill;
+    width: 100%;
+    /* margin-left: 5%; */
+    padding: 20px;
+}
+
+.bg-grey{
+    background-color: #f3f2f3;
+    
+}
+
+.h-366{
+    height: 36px;
+    text-align: left!important;
+}
+
+.p-20{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.br-20{
+    border-radius: 20px;
+}

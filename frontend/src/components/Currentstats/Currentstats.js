@@ -5,15 +5,15 @@ function Currentstats(props) {
   return (
     <div className="d-flex flex-column justify-content-center align-items-center current-s">
         <div className="current-s mt-5 pb-5 text-center d-flex flex-column justify-content-center align-items-center col-xl-8 col-lg-11 col-sm-11">
-        <AnimationOnScroll animateIn="animate__bounceIn">
+        {/* <AnimationOnScroll animateIn="animate__bounceIn"> */}
         <div className="mt-5 mb-5">
         <h1 className="font-head font-48">
           <b>Our Impact , Our Reach</b>
         </h1>
       </div>
-    </AnimationOnScroll>
+    {/* </AnimationOnScroll> */}
 
-
+    
         <div className="cards-cs d-flex flex-row f-wrap">
             <div className="card-cs m-4">
                 <h1 className="num font-head">
