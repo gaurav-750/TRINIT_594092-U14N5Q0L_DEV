@@ -11,32 +11,31 @@ import("./NGO_Profile.css");
 const NGO_Profile = () => {
   const [Pageno, setCurrPage] = useState(1);
   const [ngoData, setNgoData] = useState({
-    "id": 1,
-    "name": "",
-    "impact": "",
-    "end_goal": "",
-    "mission": "",
-    "history": "",
-    "funding_needed": 0,
-    "type": "",
+    id: 1,
+    name: "",
+    impact: "",
+    end_goal: "",
+    mission: "",
+    history: "",
+    funding_needed: 0,
+    type: "",
     // "user": 1,
-    "city": ""
-})
-
+    city: "",
+  });
 
   const params = useParams();
   useEffect(() => {
+    let pg_no = params.pg_no;
+    setCurrPage(pg_no);
 
-      let pg_no = params.pg_no;
-      setCurrPage(pg_no);
-
-      async function getData(){
-        const data = await axios.get(`http://localhost:8000/api/ngo/${params.pg_no}`);
-        console.log("data ", data.data);
-        setNgoData(data.data);
-
-      }
-      getData();
+    async function getData() {
+      const data = await axios.get(
+        `http://localhost:8000/api/ngo/${params.pg_no}`
+      );
+      console.log("data ", data.data);
+      setNgoData(data.data);
+    }
+    getData();
     // call pgNo data
 
     //received from pgno data
@@ -101,6 +100,10 @@ const NGO_Profile = () => {
               <div className="w-100 d-flex flex-column marr-l-5">
                 <h1 className="font-32-ngo">Funding needed</h1>
                 <h4>{ngoData.funding_needed} INR</h4>
+              </div>
+              <div className="w-100 d-flex flex-column marr-l-5">
+                <h1 className="font-32-ngo">Location</h1>
+                <h4>{ngoData.city} </h4>
               </div>
             </div>
           </div>

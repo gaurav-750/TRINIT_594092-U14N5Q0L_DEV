@@ -1,4 +1,3 @@
-import "./LoginSignUp.css";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -61,67 +60,88 @@ const LoginSignUp = () => {
       }
     );
 
-            // localStorage.setItem("token", data.access_key);
-    // console.log("data", data);
+    console.log("data", data);
     // let data2 = JSON.stringify(data);
     if (data.status == 200) {
+      // console.log(data);
       localStorage.setItem("token", data.data.access);
       // localStorage.setItem("token", data.access_key);
 
+      // const data2 = await axios.post('http://localhost:8000/auth/users/me/', { username, password, },)
+
       // let data2 = JSON.stringify(data);
-      console.log(data);
 
       // redirect
-      navigate("/ngo/1");
+      navigate("/user_new/");
     }
   };
-  return(
+
+  return (
     <div>
       <MyNavbar />
-      <div className="d-flex justify-content-center align-items-center text-center flex-column">
-        
-        <div className="col-lg-6 col-md-8 col-sm-10 col-sx-10 col-10">
-          <h1 className="font-48 text-head m-4 text-center">Login !</h1>
 
-            <div className="form-outline m-3">
-            <div className="form-outline m-3">
+      <div className="my-2 d-flex justify-content-center border ">
+        <div
+          className="tab-pane fade show active"
+          id="pills-login"
+          role="tabpanel"
+          aria-labelledby="tab-login"
+        >
+          <form>
+            <h1 className="text-center text-large my-2 mb-4">
+              <b>
+                <u>Login</u>
+              </b>
+            </h1>
+
+            <div className="form-outline mb-4">
               <input
                 value={username}
-                name="email"
-                onChange={(e) => setUsername(e)}
-                type="email"
+                onChange={(e) => uchange(e)}
+                type="text"
                 id="loginName"
                 className="form-control"
-                placeholder="Email"
               />
+              <label className="form-label" htmlFor="loginName">
+                username
+              </label>
             </div>
 
-            <div className="form-outline m-3">
+            <div className="form-outline mb-4">
               <input
                 value={password}
-                name="password"
-                onChange={(e) => setPassword(e)}
+                onChange={(e) => pchange(e)}
                 type="password"
                 id="loginPassword"
                 className="form-control"
-                placeholder="Password"
               />
+              <label className="form-label" for="loginPassword">
+                Password
+              </label>
             </div>
-            <div className="row m-3">
-               <div className="d-flex ">
-                 <a href="/forgot">Forgot password ?</a>
-              </div>
-              <div className="d-flex ">
-                 Not a member ?<a href="/signUp">Register</a>
+
+            <div className="row mb-4">
+              <div className="col-md-6 d-flex justify-content-center"></div>
+
+              <div className="col-md-6 d-flex justify-content-center">
+                <a href="/forgot">Forgot password?</a>
               </div>
             </div>
 
             <button
-               onClick={submitLogin}
-               type="submit"
-               className="btn btn-primary btn-block mb-4"
-              >Sign Up</button>
-          </div>
+              onClick={submitLogin}
+              type="submit"
+              className="btn btn-primary btn-block mb-4"
+            >
+              Sign in
+            </button>
+
+            <div className="text-center">
+              <p>
+                Not a member? <a href="/signUp">Register</a>
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
