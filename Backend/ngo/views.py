@@ -19,6 +19,7 @@ class NgoViewset(ModelViewSet):
 
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ['name', 'city']
+    filterset_fields = ['type']
 
     pagination_class = CustomPagination
 
