@@ -29,7 +29,7 @@ const SignUp = () => {
         const data = await axios.post('http://localhost:8000/auth/users/', { ...formValue, is_phalanthropist: dpdown == "Philanthropist" },)
 
         // let data2 = JSON.stringify(data);
-        console.log(data);
+        // console.log(data);
         if (data.status == 200) {
             // localStorage.setItem("token", data.access) 
             // if(dpdown == "Philanthropist"){

@@ -60,13 +60,13 @@ const LoginSignUp = () => {
         console.log("data", data);
         // let data2 = JSON.stringify(data);
         if (data.status == 200) {
-            localStorage.setItem("token", data.access) 
+            // console.log(data);
+            localStorage.setItem("token", data.data.access) 
             // localStorage.setItem("token", data.access_key);
 
             // const data2 = await axios.post('http://localhost:8000/auth/users/me/', { username, password, },)
 
             // let data2 = JSON.stringify(data);
-            // console.log(data2);
 
             // redirect
             navigate("/ngo/1");
@@ -92,7 +92,7 @@ const LoginSignUp = () => {
                         </div>
 
                         <div className="form-outline mb-4">
-                            <input valule={password} onChange={(e) => pchange(e)} type="password" id="loginPassword" className="form-control" />
+                            <input value={password} onChange={(e) => pchange(e)} type="password" id="loginPassword" className="form-control" />
                             <label className="form-label" for="loginPassword">Password</label>
                         </div>
 

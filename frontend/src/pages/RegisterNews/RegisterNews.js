@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import MyNavbar from '../../components/MyNavbar/MyNavbar';
 
 const RegisterNews = () => {
 
@@ -23,25 +24,22 @@ const RegisterNews = () => {
 
     const submitLogin = async (e) => {
         e.preventDefault();
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Credentials": true,
-                // "Authorization": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc2MjEyMTY0LCJqdGkiOiJjZGE0NDg2YjQ1ZTE0MDY0OWExNzRjZGIxYmJjNDM5NiIsInVzZXJfaWQiOjR9.s0cV5T4iHVuFlWIYvc-WEFxMcVXh9YS6CTzMdSDNnq4"
-            },
-            body: {
-                username,
-                password,
-            },
-            redirect: 'follow'
-        };
+        console.log(`JWT ${localStorage.getItem('token')}`);
+        // var requestOptions = {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         // "Access-Control-Allow-Credentials": true,
+        //         "Authorization": `JWT ${localStorage.getItem('token')}`
+        //     },
+        //     body: {
+        //         username,
+        //         password,
+        //     },
+        //     redirect: 'follow'
+        // };
 
         // const data = await fetch("http://localhost:8000/auth/jwt/create/", requestOptions);
-        console.log("sefsf", {
-            username,
-            password,
-        });
         // const data = await axios({
         //     method: 'post',
         //     url: "http://localhost:8000/auth/jwt/create/",
@@ -54,11 +52,12 @@ const RegisterNews = () => {
         const data = await axios.post('http://localhost:8000/api/blog/', {
             title: username, 
             description: password,
-            link: password2,
+            image: password2,
             },
             {
             headers: {
                 // Authorization: 'Bearer ' + varToken
+                "Authorization": `JWT ${localStorage.getItem('token')}`
                 // 'Access-Control-Allow-Credentials': true
             }
         })
@@ -88,29 +87,27 @@ const RegisterNews = () => {
 
         <div className="my-2 d-flex justify-content-center border ">
 
-            <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                <form>
+            <div className="tab-pane fade show active col-lg-6 col-md-8 col-sm-10 col-sx-10 col-10 border mx-2 my-2 px-2 py-2" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
 
                     <h1 className="text-center text-large my-2 mb-4"><b><u>Post News</u></b></h1>
+                    
+                        <div className="form-outline mb-4">
+                            <input value={username} onChange={(e) => uchange(e)} type="text" id="loginName" className="form-control" />
+                            <label className="form-label" htmlFor="loginName">Title</label>
+                        </div>
 
-                    <div className="form-outline mb-4">
-                        <input value={username} onChange={(e) => uchange(e)} type="text" id="loginName" className="form-control" />
-                        <label className="form-label" htmlFor="loginName">Title</label>
-                    </div>
+                        <div className="form-outline mb-4">
+                            <textarea value={password} onChange={(e) => pchange(e)} type="text" id="loginPass24word" className="form-control" />
+                            <label className="form-label" for="loginPass24word">Description</label>
+                        </div>
 
-                    <div className="form-outline mb-4">
-                        <input valule={password} onChange={(e) => pchange(e)} type="text" id="loginPassword" className="form-control" />
-                        <label className="form-label" for="loginPassword">Description</label>
-                    </div>
-
-                    <div className="form-outline mb-4">
-                        <input valule={password2} onChange={(e) => pchange2(e)} type="text" id="loginPassword" className="form-control" />
-                        <label className="form-label" for="loginPassword">Image Link</label>
-                    </div>
+                        <div className="form-outline mb-4">
+                            <input value={password2} onChange={(e) => pchange2(e)} type="text" id="loginPasswor325rtd" className="form-control" />
+                            <label className="form-label" for="loginPasswor325rtd">Image Link</label>
+                        </div>
 
                     <button onClick={submitLogin} type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
 
-                </form>
             </div>
 
         </div>
