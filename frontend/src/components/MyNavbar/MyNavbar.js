@@ -1,40 +1,40 @@
-import React from 'react'
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import React from "react";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
 const Logo = require("../../img/logo.PNG");
 const Full_Logo = require("../../img/full_logo.PNG");
 import("./MyNavbar.css");
 
 const MyNavbar = () => {
   return (
-    <Navbar  bg="light" expand="sm" className=" nav-home">
-          <Container fluid>
-            <Navbar.Brand href="#">
-              <img src={Full_Logo} alt="logo" className="logo_img_css" /> 
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls={"offcanvasNavbar-expand-sm"} />
-            <Navbar.Offcanvas
-              id={"offcanvasNavbar-expand-sm"}
-              aria-labelledby={"offcanvasNavbarLabel-expand-sm"}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={"offcanvasNavbarLabel-expand-sm"}>
-                  Offcanvas
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="/">Home</Nav.Link>
-                  <Nav.Link href="/news">News</Nav.Link>
-                  {/* <Nav.Link href="#action2">Link</Nav.Link> */}
-                  {/* <NavDropdown
+    <Navbar bg="light" expand="sm" className=" nav-home">
+      <Container fluid>
+        <Navbar.Brand href="/">
+          <img src={Full_Logo} alt="logo" className="logo_img_css" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls={"offcanvasNavbar-expand-sm"} />
+        <Navbar.Offcanvas
+          id={"offcanvasNavbar-expand-sm"}
+          aria-labelledby={"offcanvasNavbarLabel-expand-sm"}
+          placement="end"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id={"offcanvasNavbarLabel-expand-sm"}>
+              Offcanvas
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/news">News</Nav.Link>
+              {/* <Nav.Link href="#action2">Link</Nav.Link> */}
+              {/* <NavDropdown
                     title="Dropdown"
                     id={"offcanvasNavbarDropdown-expand-sm"}
                   >
@@ -47,24 +47,56 @@ const MyNavbar = () => {
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown> */}
-                  {localStorage.getItem('token') != null ? <><Button variant="outline-none mx-1 text-black" href="/ngo/1">View NGOs</Button></> : <></>}
-                </Nav>
-                <Form className="d-flex">
-                  {/* <Form.Control
+              {localStorage.getItem("token") != null ? (
+                <>
+                  <Button variant="outline-none mx-1 text-black" href="/ngo/1">
+                    View NGOs
+                  </Button>
+                </>
+              ) : (
+                <></>
+              )}
+            </Nav>
+            <Form className="d-flex">
+              {/* <Form.Control
                     type="search"
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
                   /> */}
-                  {localStorage.getItem('token') != null ? <Button variant="outline-none mx-1 btn btn-danger text-white" onClick={(e)=>{ e.preventDefault(); localStorage.removeItem("token"); window.location.reload();}}>Logout</Button> : <><Button variant="outline-none mx-1 loginBtnColorNavbar text-white" href="/login">Login</Button>
-                  <Button variant="outline-none mx-1 signinBtnColorNavbar text-white" href="/signUp">Sign Up</Button></>}
-                  
-                </Form>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
+              {localStorage.getItem("token") != null ? (
+                <Button
+                  variant="outline-none mx-1 btn btn-danger text-white"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    localStorage.removeItem("token");
+                    window.location.reload();
+                  }}
+                >
+                  Logout
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    variant="outline-none mx-1 loginBtnColorNavbar text-white"
+                    href="/login"
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    variant="outline-none mx-1 signinBtnColorNavbar text-white"
+                    href="/signUp"
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
+            </Form>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
     </Navbar>
-  )
-}
+  );
+};
 
-export default MyNavbar
+export default MyNavbar;
