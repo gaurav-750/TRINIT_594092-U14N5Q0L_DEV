@@ -1,12 +1,12 @@
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Ngo, Philanthropist, PhilanthropistPreference, Transaction, Plan, Type, Work, Blog
-from .serializers import AddPhilanthropistPreferenceSerializer, BlogSerializer, NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer, PhilanthropistPreferenceSerializer
+from .serializers import AddPhilanthropistPreferenceSerializer, BlogSerializer, CreateBlogSerializer, NgoSerializer, CreateNgoSerializer, TypeSerializer, WorkSerializer, PlanSerializer, UpdateNgoSerializer, PhilanthropistSerializer, CreatePhilanthropistSerializer, PhilanthropistPreferenceSerializer
 from .permissions import IsOwnerOrReadOnly
 from .pagination import CustomPagination
 
@@ -19,6 +19,7 @@ class NgoViewset(ModelViewSet):
 
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ['name', 'city']
+    filterset_fields = ['type']
 
     pagination_class = CustomPagination
 
@@ -110,5 +111,21 @@ class PhilantrophistPreferenceViewset(ListModelMixin,
 
 
 class BlogViewset(ModelViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ['title', 'author__first_name', 'author__last_name']
+
     queryset = Blog.objects.all()
-    serializer_class = BlogSerializer
+    # serializer_class = BlogSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CreateBlogSerializer
+        else:
+            return BlogSerializer
+
+    def get_serializer_context(self):
+        return {
+            'user_id': self.request.user.id
+        }

@@ -47,6 +47,7 @@ const MyNavbar = () => {
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown> */}
+                  {localStorage.getItem('token') != null ? <><Button variant="outline-none mx-1 text-black" href="/ngo/1">View NGOs</Button></> : <></>}
                 </Nav>
                 <Form className="d-flex">
                   {/* <Form.Control

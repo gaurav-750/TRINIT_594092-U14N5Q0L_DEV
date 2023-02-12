@@ -61,16 +61,12 @@ const LoginSignUp = () => {
       }
     );
 
+            // localStorage.setItem("token", data.access_key);
     // console.log("data", data);
     // let data2 = JSON.stringify(data);
     if (data.status == 200) {
-      localStorage.setItem("token", data.access);
+      localStorage.setItem("token", data.data.access);
       // localStorage.setItem("token", data.access_key);
-
-      const data = await axios.post("http://localhost:8000/auth/users/me/", {
-        username,
-        password,
-      });
 
       // let data2 = JSON.stringify(data);
       console.log(data);
